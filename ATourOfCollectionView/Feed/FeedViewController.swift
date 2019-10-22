@@ -24,8 +24,8 @@ class FeedViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath)
-        (cell as? ImageCell)?.image = person.feedImages[indexPath.item]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
+        cell.image = person.feedImages[indexPath.item]
         return cell
     }
 }

@@ -51,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6812E860235EA95200E9E43F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7AED0D9023365C1000FCAD0C /* Person.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7A9FBE7F23365A1D0013F993 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +93,7 @@
 				7ADBBCD4233627F6009B02AE /* Friends */,
 				7A9FBE7F23365A1D0013F993 /* Feed */,
 				7ADBBCC6233625DE009B02AE /* Main.storyboard */,
+				6812E860235EA95200E9E43F /* Model */,
 				7ADBBCC9233625DE009B02AE /* Assets.xcassets */,
 				7ADBBCCB233625DE009B02AE /* LaunchScreen.storyboard */,
 				7ADBBCCE233625DE009B02AE /* Info.plist */,
@@ -99,7 +108,6 @@
 				7ADBBCD6233628F6009B02AE /* PersonCell.swift */,
 				7ADBBCD7233628F6009B02AE /* PersonCell.xib */,
 				7AED0D8E23365BF500FCAD0C /* ColumnFlowLayout.swift */,
-				7AED0D9023365C1000FCAD0C /* Person.swift */,
 			);
 			path = Friends;
 			sourceTree = "<group>";

@@ -13,10 +13,16 @@ class MosaicLayout: UICollectionViewLayout {
     var contentBounds = CGRect.zero
     var cachedAttributes = [UICollectionViewLayoutAttributes]()
     
+    //  prepare()
+    //  ----------
+    //  Called for every invalidateLayout
+    //  Cache UICollectionViewLayoutAttributes
+    //  Compute collectionViewContentSize
+    
     override func prepare() {
         super.prepare()
         
-        guard let cv = collectionView else { return }
+        guard let cv = self.collectionView else { return }
         
         // Reset cached info
         cachedAttributes.removeAll()
@@ -33,6 +39,12 @@ class MosaicLayout: UICollectionViewLayout {
         return contentBounds.size
     }
     
+    //  shouldInvalidateLayout()
+    //  ----------
+    //  Called for every bounds change: size / origin
+    //  Called during scrolling
+    //  Default implementation returns 'false'
+    
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         guard let cv = collectionView else { return false }
         return !newBounds.size.equalTo(cv.bounds.size)
@@ -43,16 +55,24 @@ class MosaicLayout: UICollectionViewLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        
         var attributesArray = [UICollectionViewLayoutAttributes]()
+        
+        //  Find and cell that sits within the query rect
         let firstMatchIndex = cachedAttributes.binarySearch { rect.intersects($0.frame) }
+        //guard let myFirstMatchIndex = binary
+        
+        //  Starting from our match, loop up and down through the array until we've added all attributes with frames within our query rect
         for attributes in cachedAttributes[..<firstMatchIndex].reversed() {
             guard attributes.frame.maxY >= rect.minY else { break }
             attributesArray.append(attributes)
         }
+        
         for attributes in cachedAttributes[firstMatchIndex...] {
             guard attributes.frame.minY <= rect.maxY else { break }
             attributesArray.append(attributes)
         }
+        
         return attributesArray
     }
     

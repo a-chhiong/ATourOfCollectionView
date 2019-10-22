@@ -13,4 +13,5 @@ struct Person {
     let image: UIImage?
     let lastUpdate: Date?
     let feedImages: [UIImage]
+    var isUpdated: Bool
 }
